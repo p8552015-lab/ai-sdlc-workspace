@@ -23,7 +23,7 @@ TIER2=(
   .ai/sdlc-governance.md .ai/risk-policy.md .ai/new-project-policy.md
   .claude/commands .cursor/rules/ai-sdlc.mdc
   scripts/audit_skills.py scripts/bootstrap_external_skills.sh
-  scripts/check_environment.sh scripts/validate_pipeline.py
+  scripts/check_environment.sh scripts/validate_pipeline.py scripts/test_graduate.sh
   skills
   .github/pull_request_template.md .github/ISSUE_TEMPLATE
   docs/SDLC-SCAFFOLDING.md

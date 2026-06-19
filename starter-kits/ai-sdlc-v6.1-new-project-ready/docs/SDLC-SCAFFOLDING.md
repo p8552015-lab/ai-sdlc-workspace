@@ -36,6 +36,10 @@ placeholder `.gitkeep` / empty dirs, delete `.DS_Store`, warn about dangling
 references to removed files, and warn about `.venv`/cache dirs that must not be
 shipped.
 
+`scripts/test_graduate.sh` is a self-test: it runs `--full` on a throwaway copy
+and asserts the result is clean (no scaffolding/junk; product + `.ai/artifacts`
+kept). Run it after changing the graduation logic.
+
 ## Why this exists
 
 Without graduation, a copied kit leaves the majority of the repo as non-product

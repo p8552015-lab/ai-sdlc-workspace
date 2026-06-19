@@ -69,7 +69,8 @@ repo/
 ├── skills/company/ai-sdlc-orchestrator/SKILL.md
 ├── skills/external/{addyosmani-agent-skills,obra-superpowers,heilcheng-awesome-agent-skills}/
 ├── .claude/commands/{sdlc-inception,sdlc-define,sdlc-architecture,sdlc-bootstrap,...}.md
-└── scripts/{bootstrap_external_skills.sh,audit_skills.py,validate_pipeline.py}
+├── scripts/{bootstrap_external_skills.sh,audit_skills.py,validate_pipeline.py,graduate_sdlc.sh}
+└── optional/{langgraph,crewai}/   # 選用編排骨架,可刪
 
 ## 新增/修改的關鍵檔案
 
@@ -146,6 +147,7 @@ repo/
 - 全新專案從 /sdlc-inception 開始；既有專案從 /sdlc-define 或 /sdlc-plan 開始。
 - 任何 R3/R4 變更都必須先產生 plan 與 approval request。
 - PR 前確認 evidence、risk class、rollback plan、CI status 都存在。
+- 出貨/交付前執行 `bash scripts/graduate_sdlc.sh --full` 移除開發鷹架,得到乾淨產品 repo(見 starter kit 內 `docs/SDLC-SCAFFOLDING.md`)。
 
 ## 修整後的判斷原則
 
