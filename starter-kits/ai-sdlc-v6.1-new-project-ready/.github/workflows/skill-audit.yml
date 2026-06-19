@@ -1,8 +1,10 @@
 name: Skill Audit
 on:
   pull_request:
+    paths: ['skills/**', 'pipeline/skill-map.yml', 'scripts/**', '.github/workflows/skill-audit.yml']
   push:
     branches: [main]
+    paths: ['skills/**', 'pipeline/skill-map.yml', 'scripts/**', '.github/workflows/skill-audit.yml']
 jobs:
   audit:
     runs-on: ubuntu-latest

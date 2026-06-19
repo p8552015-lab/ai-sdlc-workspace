@@ -110,11 +110,11 @@ repo/
 │   ├── bootstrap_external_skills.sh
 │   ├── audit_skills.py
 │   ├── validate_pipeline.py
-│   └── check_environment.sh
-├── langgraph/sdlc_graph.py
-└── crewai/
-    ├── agents.yaml
-    └── tasks.yaml
+│   ├── check_environment.sh
+│   └── graduate_sdlc.sh
+└── optional/                 # opt-in only (LangGraph/CrewAI); safe to delete
+    ├── langgraph/sdlc_graph.py
+    └── crewai/{agents,tasks}.yaml
 ```
 
 ---

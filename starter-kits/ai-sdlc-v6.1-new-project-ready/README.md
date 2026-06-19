@@ -38,3 +38,14 @@ python scripts/audit_skills.py
 ```
 
 Do not start with `/sdlc-build` for a new project.
+
+## Scaffolding vs product (graduation)
+
+This kit ships SDLC scaffolding alongside your product. Optional scaffolds live in `optional/` (delete if unused). When you ship, strip the dev-only scaffolding:
+
+```bash
+bash scripts/graduate_sdlc.sh          # tier-1 (any shipped project)
+bash scripts/graduate_sdlc.sh --full   # also governance (no longer kit-developed)
+```
+
+Product code, `docs/`, and `.ai/artifacts/` are always kept. See `docs/SDLC-SCAFFOLDING.md`.

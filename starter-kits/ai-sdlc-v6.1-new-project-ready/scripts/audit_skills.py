@@ -63,7 +63,7 @@ if errors:
     if all_external and externals_unbootstrapped:
         print('External skills are not bootstrapped - local tree is intentionally incomplete.')
         print('Run: bash scripts/bootstrap_external_skills.sh  (then re-run this audit).')
-        print('CI bootstraps automatically before this audit, so this is expected locally.')
+        print('The starter kit skill-audit workflow bootstraps before this audit in target repos.')
         sys.exit(1)
     print('\n'.join(errors))
     sys.exit(1)

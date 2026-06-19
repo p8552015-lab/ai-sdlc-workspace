@@ -45,9 +45,11 @@ use pandoc: `pandoc file.md -o file.docx` (pandoc is not bundled).
 ## Local tree is intentionally incomplete
 
 A fresh checkout does **not** contain the external skills — `skills/external/*`
-are placeholders until bootstrap runs. This is by design (thin curator). CI
-bootstraps automatically before auditing skills; locally, run bootstrap first.
-Do not claim "locally complete & runnable" without it.
+are placeholders until bootstrap runs. This is by design (thin curator). The
+workspace-root CI only checks source-of-truth consistency. The starter kit's own
+`.github/workflows/skill-audit.yml` bootstraps external skills before auditing
+them after the kit is copied into a target repository. Locally, run bootstrap
+first. Do not claim "locally complete & runnable" without it.
 
 ## Invariants (enforced by `scripts/check_consistency.sh`)
 

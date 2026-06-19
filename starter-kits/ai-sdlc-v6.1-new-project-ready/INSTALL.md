@@ -32,3 +32,13 @@ python scripts/audit_skills.py
 ```text
 /sdlc-define
 ```
+
+## Note: this file is adoption-only
+
+`INSTALL.md` only documents copying the kit into a repo; it has no purpose once the project exists. It (and other dev-only scaffolding) is removed by:
+
+```bash
+bash scripts/graduate_sdlc.sh
+```
+
+See `docs/SDLC-SCAFFOLDING.md` for what counts as scaffolding vs product.
