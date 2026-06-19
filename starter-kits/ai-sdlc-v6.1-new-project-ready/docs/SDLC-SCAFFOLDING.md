@@ -29,6 +29,13 @@ bash scripts/graduate_sdlc.sh --full   # also remove tier-2 (no longer kit-devel
 
 Product code, `docs/`, and `.ai/artifacts/` are kept in both modes.
 
+`--full` additionally removes the SDLC GitHub templates (`pull_request_template.md`,
+`ISSUE_TEMPLATE/`) and this scaffolding guide, and strips `> Generated during
+/sdlc-*` headers from `docs/*.md`. **Both** modes also run delivery hygiene: drop
+placeholder `.gitkeep` / empty dirs, delete `.DS_Store`, warn about dangling
+references to removed files, and warn about `.venv`/cache dirs that must not be
+shipped.
+
 ## Why this exists
 
 Without graduation, a copied kit leaves the majority of the repo as non-product
