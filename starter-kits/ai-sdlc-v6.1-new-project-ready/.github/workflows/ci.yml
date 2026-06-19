@@ -1,0 +1,13 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Project CI placeholder
+        run: |
+          echo "Replace this with your project commands: npm test, pytest, cargo test, go test, etc."

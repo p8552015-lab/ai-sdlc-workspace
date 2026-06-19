@@ -1,0 +1,104 @@
+version: 1.1
+external_skill_root: skills/external
+company_skill_root: skills/company
+
+phases:
+  inception:
+    primary:
+      - skills/external/addyosmani-agent-skills/skills/interview-me/SKILL.md
+      - skills/external/addyosmani-agent-skills/skills/idea-refine/SKILL.md
+      - skills/external/addyosmani-agent-skills/skills/spec-driven-development/SKILL.md
+    supporting:
+      - skills/external/obra-superpowers
+      - skills/company/ai-sdlc-orchestrator/SKILL.md
+
+  define:
+    primary:
+      - skills/external/addyosmani-agent-skills/skills/interview-me/SKILL.md
+      - skills/external/addyosmani-agent-skills/skills/idea-refine/SKILL.md
+      - skills/external/addyosmani-agent-skills/skills/spec-driven-development/SKILL.md
+    supporting:
+      - skills/company/ai-sdlc-orchestrator/SKILL.md
+
+  architecture:
+    primary:
+      - skills/external/addyosmani-agent-skills/skills/planning-and-task-breakdown/SKILL.md
+      - skills/external/addyosmani-agent-skills/skills/api-and-interface-design/SKILL.md
+      - skills/external/addyosmani-agent-skills/skills/security-and-hardening/SKILL.md
+      - skills/external/addyosmani-agent-skills/skills/documentation-and-adrs/SKILL.md
+    supporting:
+      - skills/external/obra-superpowers
+      - skills/company/ai-sdlc-orchestrator/SKILL.md
+
+  bootstrap:
+    primary:
+      - skills/external/addyosmani-agent-skills/skills/incremental-implementation/SKILL.md
+      - skills/external/addyosmani-agent-skills/skills/test-driven-development/SKILL.md
+      - skills/external/addyosmani-agent-skills/skills/ci-cd-and-automation/SKILL.md
+      - skills/external/addyosmani-agent-skills/skills/git-workflow-and-versioning/SKILL.md
+      - skills/external/addyosmani-agent-skills/skills/documentation-and-adrs/SKILL.md
+    supporting:
+      - skills/external/obra-superpowers
+      - skills/company/ai-sdlc-orchestrator/SKILL.md
+
+  plan:
+    primary:
+      - skills/external/addyosmani-agent-skills/skills/planning-and-task-breakdown/SKILL.md
+      - skills/external/addyosmani-agent-skills/skills/context-engineering/SKILL.md
+    supporting:
+      - skills/company/ai-sdlc-orchestrator/SKILL.md
+
+  build:
+    primary:
+      - skills/external/addyosmani-agent-skills/skills/incremental-implementation/SKILL.md
+      - skills/external/addyosmani-agent-skills/skills/context-engineering/SKILL.md
+      - skills/external/addyosmani-agent-skills/skills/source-driven-development/SKILL.md
+      - skills/external/addyosmani-agent-skills/skills/doubt-driven-development/SKILL.md
+      - skills/external/addyosmani-agent-skills/skills/test-driven-development/SKILL.md
+      - skills/external/addyosmani-agent-skills/skills/api-and-interface-design/SKILL.md
+    optional:
+      - skills/external/addyosmani-agent-skills/skills/frontend-ui-engineering/SKILL.md
+    supporting:
+      - skills/external/obra-superpowers
+      - skills/company/ai-sdlc-orchestrator/SKILL.md
+
+  verify:
+    primary:
+      - skills/external/addyosmani-agent-skills/skills/debugging-and-error-recovery/SKILL.md
+      - skills/external/addyosmani-agent-skills/skills/browser-testing-with-devtools/SKILL.md
+    supporting:
+      - skills/company/ai-sdlc-orchestrator/SKILL.md
+
+  review:
+    primary:
+      - skills/external/addyosmani-agent-skills/skills/code-review-and-quality/SKILL.md
+      - skills/external/addyosmani-agent-skills/skills/code-simplification/SKILL.md
+      - skills/external/addyosmani-agent-skills/skills/security-and-hardening/SKILL.md
+      - skills/external/addyosmani-agent-skills/skills/performance-optimization/SKILL.md
+    supporting:
+      - skills/external/obra-superpowers
+      - skills/company/ai-sdlc-orchestrator/SKILL.md
+
+  ship:
+    primary:
+      - skills/external/addyosmani-agent-skills/skills/git-workflow-and-versioning/SKILL.md
+      - skills/external/addyosmani-agent-skills/skills/ci-cd-and-automation/SKILL.md
+      - skills/external/addyosmani-agent-skills/skills/deprecation-and-migration/SKILL.md
+      - skills/external/addyosmani-agent-skills/skills/documentation-and-adrs/SKILL.md
+      - skills/external/addyosmani-agent-skills/skills/shipping-and-launch/SKILL.md
+    supporting:
+      - skills/company/ai-sdlc-orchestrator/SKILL.md
+
+  operate:
+    primary:
+      - skills/external/addyosmani-agent-skills/skills/debugging-and-error-recovery/SKILL.md
+      - skills/external/addyosmani-agent-skills/skills/deprecation-and-migration/SKILL.md
+      - skills/external/addyosmani-agent-skills/skills/documentation-and-adrs/SKILL.md
+    supporting:
+      - skills/company/ai-sdlc-orchestrator/SKILL.md
+
+  meta:
+    primary:
+      - skills/external/addyosmani-agent-skills/skills/using-agent-skills/SKILL.md
+    discovery:
+      - skills/external/heilcheng-awesome-agent-skills

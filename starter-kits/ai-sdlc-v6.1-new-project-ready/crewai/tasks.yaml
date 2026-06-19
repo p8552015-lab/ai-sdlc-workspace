@@ -1,0 +1,15 @@
+define_task:
+  agent: pm_agent
+  output: .ai/artifacts/define/<id>.md
+plan_task:
+  agent: architect_agent
+  output: .ai/artifacts/plan/<id>.md
+build_task:
+  agent: developer_agent
+  output: .ai/artifacts/build/<id>.md
+review_task:
+  agent: reviewer_agent
+  output: .ai/artifacts/review/<id>.md
+verify_task:
+  agent: qa_agent
+  output: .ai/artifacts/verify/<id>.md

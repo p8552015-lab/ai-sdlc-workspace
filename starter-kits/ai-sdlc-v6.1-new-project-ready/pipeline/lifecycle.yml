@@ -1,0 +1,260 @@
+version: 1.1
+pipeline: ai-sdlc-claude-code-new-project-ready
+
+paths:
+  new_project:
+    sequence: [inception, define, architecture, bootstrap, plan, build, verify, review, ship, operate]
+  existing_project:
+    sequence: [define, plan, build, verify, review, ship, operate]
+
+stages:
+  inception:
+    goal: Define the project before code exists.
+    artifact_dir: .ai/artifacts/inception
+    required_outputs:
+      - project_brief
+      - target_users
+      - core_use_cases
+      - mvp_scope
+      - non_goals
+      - success_metrics
+      - initial_risks
+      - open_questions
+    allowed_actions:
+      - ask clarifying questions
+      - refine product idea
+      - define users and use cases
+      - define non-goals
+      - define success metrics
+    forbidden_actions:
+      - create application code
+      - choose technologies without tradeoff analysis
+      - scaffold production project
+    exit_criteria:
+      - MVP scope is explicit
+      - non-goals are explicit
+      - success metrics are defined
+      - open questions are answered or tracked
+    gate:
+      requires_human_approval_for: [R1, R2, R3, R4]
+
+  define:
+    goal: Clarify the problem and produce verifiable specifications.
+    artifact_dir: .ai/artifacts/define
+    required_outputs:
+      - problem_statement
+      - user_stories
+      - acceptance_criteria
+      - constraints
+      - non_goals
+      - risk_class
+      - selected_skills
+    allowed_actions:
+      - write specs
+      - refine acceptance criteria
+      - define edge cases
+      - define non-functional requirements
+    forbidden_actions:
+      - implement feature code before spec approval for new projects
+    exit_criteria:
+      - acceptance criteria are testable
+      - constraints and non-goals are documented
+      - risk class is assigned
+    gate:
+      requires_human_approval_for: [R2, R3, R4]
+
+  architecture:
+    goal: Decide the technical foundation and document tradeoffs.
+    artifact_dir: .ai/artifacts/architecture
+    required_outputs:
+      - architecture_options
+      - recommended_architecture
+      - adr_records
+      - module_boundaries
+      - data_model_outline
+      - api_strategy
+      - security_model
+      - testing_strategy
+      - deployment_strategy
+    allowed_actions:
+      - compare architecture options
+      - create ADRs
+      - define module boundaries
+      - define testing and security strategy
+    forbidden_actions:
+      - implement business features
+      - add production secrets
+      - deploy production infrastructure
+    exit_criteria:
+      - architecture is approved
+      - key ADRs exist
+      - risks and tradeoffs are documented
+    gate:
+      requires_human_approval_for: [R1, R2, R3, R4]
+
+  bootstrap:
+    goal: Create a working project skeleton and engineering foundation.
+    artifact_dir: .ai/artifacts/bootstrap
+    required_outputs:
+      - scaffold_summary
+      - created_structure
+      - ci_configuration
+      - lint_test_build_commands
+      - environment_template
+      - readme_setup
+      - smoke_test
+    allowed_actions:
+      - initialize framework
+      - configure package manager
+      - configure lint and formatting
+      - configure tests
+      - configure CI
+      - create README
+      - create .env.example
+      - create health check or smoke test
+    forbidden_actions:
+      - implement broad product features
+      - use real production secrets
+      - bypass CI
+      - deploy to production
+    exit_criteria:
+      - lint passes or missing lint is justified
+      - tests pass or initial test scaffold is documented
+      - build passes or build is not applicable
+      - README explains local setup
+      - .env.example exists when env vars are needed
+    gate:
+      requires_human_approval_for: [R3, R4]
+
+  plan:
+    goal: Break approved work into small verifiable tasks.
+    artifact_dir: .ai/artifacts/plan
+    required_outputs:
+      - task_breakdown
+      - impacted_files
+      - test_strategy
+      - rollback_strategy
+      - approval_request_if_needed
+    allowed_actions:
+      - split MVP into issues
+      - define milestone plan
+      - estimate risk
+      - define test plan
+    forbidden_actions:
+      - implement unapproved R3/R4 work
+    exit_criteria:
+      - tasks are independently deliverable
+      - each task has acceptance criteria
+      - risk class is assigned
+    gate:
+      requires_human_approval_for: [R2, R3, R4]
+
+  build:
+    goal: Implement approved work incrementally.
+    artifact_dir: .ai/artifacts/build
+    required_outputs:
+      - slices_completed
+      - files_changed
+      - commands_run
+      - deviations_from_plan
+    allowed_actions:
+      - implement approved tasks
+      - update tests
+      - refactor related code when justified
+    forbidden_actions:
+      - modify unrelated files
+      - expand scope without approval
+      - introduce unapproved dependencies
+    exit_criteria:
+      - implementation matches plan
+      - tests are added or updated
+      - diff is reviewed locally
+    gate:
+      requires_human_approval_for: [R3, R4]
+
+  verify:
+    goal: Prove the implementation works with evidence.
+    artifact_dir: .ai/artifacts/verify
+    required_outputs:
+      - test_commands
+      - results
+      - failures
+      - evidence
+      - acceptance_checklist
+    allowed_actions:
+      - run tests
+      - run lint/build
+      - run browser/devtools checks when applicable
+      - debug failures
+    forbidden_actions:
+      - claim tests passed without running them
+    exit_criteria:
+      - evidence exists
+      - failures are fixed or documented
+      - acceptance criteria are checked
+    gate:
+      requires_human_approval_for: []
+
+  review:
+    goal: Review quality, security, simplicity, performance, and maintainability.
+    artifact_dir: .ai/artifacts/review
+    required_outputs:
+      - review_findings
+      - security_notes
+      - simplification_notes
+      - performance_notes
+      - unresolved_risks
+    allowed_actions:
+      - review diff
+      - propose simplifications
+      - flag security concerns
+      - request human review
+    forbidden_actions:
+      - silently ignore unresolved R2+ risks
+    exit_criteria:
+      - review findings are addressed or tracked
+      - unresolved risks are visible
+    gate:
+      requires_human_approval_for: [R2, R3, R4]
+
+  ship:
+    goal: Prepare PR, release notes, rollback, and deployment gate.
+    artifact_dir: .ai/artifacts/ship
+    required_outputs:
+      - pr_title
+      - pr_body
+      - release_notes
+      - rollback_plan
+      - ci_status
+    allowed_actions:
+      - prepare PR
+      - prepare release notes
+      - update changelog
+      - document rollback
+    forbidden_actions:
+      - deploy production without approval
+      - hide CI failures
+    exit_criteria:
+      - CI status is known
+      - rollback plan exists
+      - PR contains evidence
+    gate:
+      requires_human_approval_for: [R2, R3, R4]
+
+  operate:
+    goal: Monitor, learn, and feed improvements back into lifecycle.
+    artifact_dir: .ai/artifacts/operate
+    required_outputs:
+      - monitoring_result
+      - incident_notes
+      - follow_up_tasks
+    allowed_actions:
+      - review production signals
+      - capture incidents
+      - create follow-up tasks
+    forbidden_actions:
+      - make unapproved production changes
+    exit_criteria:
+      - follow-up tasks are tracked
+    gate:
+      requires_human_approval_for: [R3, R4]

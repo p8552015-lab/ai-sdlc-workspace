@@ -1,0 +1,52 @@
+version: 1.1
+risk_classes:
+  R0:
+    description: Documentation, comments, formatting, no behavior change.
+    ai_allowed: true
+    human_approval: optional
+  R1:
+    description: Tests, type fixes, small local bug fixes.
+    ai_allowed: true
+    human_approval: optional
+  R2:
+    description: Feature work, public behavior changes, API changes.
+    ai_allowed: true_after_plan
+    human_approval: before_merge
+  R3:
+    description: Auth, payment, security-sensitive code, database migration, infrastructure, data model changes.
+    ai_allowed: plan_only_until_approved
+    human_approval: before_implementation
+  R4:
+    description: Production deployment, irreversible migration, data deletion, secret/policy changes, permission boundary changes.
+    ai_allowed: analysis_only
+    human_approval: explicit_owner_approval_required
+
+phase_gates:
+  inception:
+    approval_required: true
+    approver: product_owner_or_user
+  architecture:
+    approval_required: true
+    approver: technical_owner
+  bootstrap:
+    approval_required_when: [R3, R4]
+    approver: technical_owner
+  build:
+    approval_required_when: [R3, R4]
+    approver: technical_owner
+  ship:
+    approval_required_when: [R2, R3, R4]
+    approver: repository_owner
+  operate:
+    approval_required_when: [R3, R4]
+    approver: production_owner
+
+always_requires_approval:
+  - primary tech stack selection or change
+  - architecture change after approval
+  - paid or vendor-locking service introduction
+  - auth/payment/security-sensitive code
+  - database schema migration
+  - production deployment
+  - data deletion
+  - CI/CD secret or permission change

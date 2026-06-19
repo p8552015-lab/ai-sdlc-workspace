@@ -1,0 +1,28 @@
+name: Feature / Change Request
+description: Request a change that enters the AI SDLC pipeline
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What problem are we solving?
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance Criteria
+      description: What must be true when this is complete?
+    validations:
+      required: true
+  - type: dropdown
+    id: risk
+    attributes:
+      label: Initial Risk Guess
+      options: [R0, R1, R2, R3, R4, Unsure]
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Constraints / Non-goals

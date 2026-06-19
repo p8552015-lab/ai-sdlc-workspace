@@ -1,0 +1,19 @@
+name: AI Policy Gate
+on:
+  pull_request:
+jobs:
+  policy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install pyyaml
+      - run: python scripts/validate_pipeline.py
+      - name: Check PR template evidence markers
+        run: |
+          test -f .github/pull_request_template.md
+          grep -q "Selected Skills" .github/pull_request_template.md
+          grep -q "Risk Class" .github/pull_request_template.md
+          grep -q "Verification Evidence" .github/pull_request_template.md

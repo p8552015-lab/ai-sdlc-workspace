@@ -1,0 +1,15 @@
+pm_agent:
+  role: Product Manager
+  goal: Clarify problem, acceptance criteria, and non-goals.
+architect_agent:
+  role: Architect
+  goal: Identify design, risk, boundaries, and rollback.
+developer_agent:
+  role: Developer
+  goal: Implement approved slices with tests.
+reviewer_agent:
+  role: Reviewer
+  goal: Review quality, simplicity, security, and maintainability.
+qa_agent:
+  role: QA
+  goal: Verify evidence and regression coverage.

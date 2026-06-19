@@ -1,0 +1,113 @@
+version: 1.1
+artifact_root: .ai/artifacts
+
+common_metadata:
+  required:
+    - phase
+    - date
+    - task_or_issue
+    - selected_skills
+    - risk_class
+    - author
+    - status
+    - evidence
+
+phases:
+  inception:
+    file: .ai/artifacts/inception/inception.md
+    required:
+      - project_brief
+      - target_users
+      - core_use_cases
+      - mvp_scope
+      - non_goals
+      - success_metrics
+      - initial_risks
+      - open_questions
+      - approval_status
+
+  define:
+    file: .ai/artifacts/define/spec.md
+    required:
+      - problem_statement
+      - user_stories
+      - acceptance_criteria
+      - constraints
+      - non_goals
+      - edge_cases
+      - risk_class
+
+  architecture:
+    file: .ai/artifacts/architecture/architecture-decision.md
+    required:
+      - architecture_options
+      - recommendation
+      - tradeoffs
+      - adr_links
+      - security_model
+      - testing_strategy
+      - deployment_strategy
+      - approval_status
+
+  bootstrap:
+    file: .ai/artifacts/bootstrap/bootstrap-report.md
+    required:
+      - scaffold_summary
+      - created_structure
+      - commands_run
+      - ci_configuration
+      - lint_test_build_results
+      - environment_template
+      - readme_status
+      - smoke_test
+
+  plan:
+    file: .ai/artifacts/plan/implementation-plan.md
+    required:
+      - task_breakdown
+      - impacted_files
+      - test_strategy
+      - rollback_strategy
+      - approval_request_if_needed
+
+  build:
+    file: .ai/artifacts/build/build-report.md
+    required:
+      - slices_completed
+      - files_changed
+      - commands_run
+      - deviations_from_plan
+
+  verify:
+    file: .ai/artifacts/verify/verification-report.md
+    required:
+      - test_commands
+      - results
+      - failures
+      - evidence
+      - acceptance_checklist
+
+  review:
+    file: .ai/artifacts/review/review-report.md
+    required:
+      - review_findings
+      - security_notes
+      - simplification_notes
+      - performance_notes
+      - unresolved_risks
+
+  ship:
+    file: .ai/artifacts/ship/ship-report.md
+    required:
+      - pr_title
+      - pr_body
+      - release_notes
+      - rollback_plan
+      - ci_status
+
+  operate:
+    file: .ai/artifacts/operate/operate-report.md
+    required:
+      - monitoring_result
+      - incident_notes
+      - follow_up_tasks

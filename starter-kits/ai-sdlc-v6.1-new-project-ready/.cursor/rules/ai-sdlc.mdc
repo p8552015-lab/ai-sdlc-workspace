@@ -1,0 +1,22 @@
+---
+description: Skill-driven AI SDLC rules for new and existing projects
+alwaysApply: true
+---
+
+Before coding:
+- Read `CLAUDE.md`.
+- Determine whether this is a new project or existing project.
+- For a new project, follow: inception → define → architecture → bootstrap → plan → build → verify → review → ship.
+- Do not implement features before MVP scope and architecture are approved.
+- Select skills from `pipeline/skill-map.yml`.
+- Follow required artifacts in `pipeline/artifact-schema.yml`.
+- Apply risk gates from `pipeline/approval-matrix.yml`.
+
+During implementation:
+- Keep changes small and related to the approved plan.
+- Do not change unrelated files.
+- Add/update tests for behavior changes.
+- Run verification commands and report exact results.
+
+Before PR:
+- Provide risk class, selected skills, evidence, unresolved risks, and rollback plan.
