@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from pathlib import Path
-import sys, re, yaml
+import re
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 MAP = ROOT / 'pipeline' / 'skill-map.yml'

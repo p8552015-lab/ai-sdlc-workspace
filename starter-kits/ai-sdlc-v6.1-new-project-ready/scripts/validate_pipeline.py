@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 from pathlib import Path
-import sys, yaml
+import sys
+
+import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 required = [

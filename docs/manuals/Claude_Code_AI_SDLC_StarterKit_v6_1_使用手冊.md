@@ -460,6 +460,26 @@ PR body 必須包含 Summary、Linked Issue、Acceptance Criteria、Test Evidenc
 
 ☐ README 可讓新人啟動專案
 
+## 19. 出貨後:畢業清理 (graduation)
+
+Starter Kit 會把 SDLC 鷹架(CLAUDE.md、pipeline/、skills/、commands、治理 CI、optional/ 等)整包放進你的 repo。**這些在開發期有用,出貨後就變成死重量**;若直接交付給客戶/廠商,會夾帶大量非產品檔、孤兒的 SDLC 範本與失效引用。
+
+專案要交付時,執行畢業腳本把鷹架剝乾淨:
+
+```
+bash scripts/graduate_sdlc.sh          # --light:移除選用鷹架、INSTALL.md、治理 CI
+bash scripts/graduate_sdlc.sh --full   # 連治理層、SDLC 的 .github 範本、scaffolding 文件一起移除
+```
+
+- `--light`:仍要用 kit 繼續開發時用(保留 CLAUDE.md / pipeline / skills 治理層)。
+- `--full`:不再用 kit 開發、要交付純產品 repo 時用。
+
+兩種模式都會做交付前清理:移除空的 `.gitkeep` / 佔位目錄、刪掉 `.DS_Store`,並**警示**還指向已刪檔的引用(如 README 還寫 `CLAUDE.md`)與不該打包的 `.venv` / 快取目錄。
+
+**永遠保留**:你的產品程式碼、`docs/`(設計文件)、`.ai/artifacts/`(各階段決策紀錄,類似 ADR)。
+
+> 細節見 starter kit 內的 `docs/SDLC-SCAFFOLDING.md`。交付前務必確認 `.venv/`、`.DS_Store`、`.pytest_cache` 等不會被打包進交付物。
+
 ## 附錄 A：最短命令版
 
 ```
