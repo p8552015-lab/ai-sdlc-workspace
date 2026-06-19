@@ -54,10 +54,10 @@
 
 ### `docs/manuals/`
 
-放 Word 格式的使用手冊與 v6.1 pipeline 設計說明:
+使用手冊與 v6.1 pipeline 設計說明。**Markdown (`*.md`) 是正本**,Word (`*.docx`) 是產生出來的 render(以 `scripts/docx_to_md.py` 由 docx 轉出;要反向由 md 生成 docx 可用 pandoc)。
 
-- `AI_SDLC_Claude_Code_New_Project_Ready_Pipeline_v6_1.docx`
-- `Claude_Code_AI_SDLC_StarterKit_v6_1_使用手冊.docx`
+- `AI_SDLC_Claude_Code_New_Project_Ready_Pipeline_v6_1.md` / `.docx`
+- `Claude_Code_AI_SDLC_StarterKit_v6_1_使用手冊.md` / `.docx`
 
 ### `archives/source-zips/`
 

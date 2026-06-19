@@ -13,7 +13,7 @@ pulled on demand by the starter kit's bootstrap script and pinned by commit SHA.
 | Content | Source of truth | Editable here? |
 |---|---|---|
 | Starter kit | `starter-kits/ai-sdlc-v6.1-new-project-ready/` | yes — this is what we maintain |
-| Manuals | `docs/manuals/*.docx` | yes |
+| Manuals | `docs/manuals/*.md` (the `.docx` is a generated render) | yes — edit the `.md` |
 | Workspace docs | `README.md`, this file | yes |
 | External skill packs | upstream GitHub repos, pinned in `skills/external/skills.lock` after bootstrap | no — never hand-edit; re-bootstrap to update |
 | ZIP snapshots | `archives/source-zips/*.zip` | no — immutable cold storage (see below) |
@@ -33,6 +33,14 @@ snapshots) with no single owner, so it was removed. To read a pack locally:
 Immutable **disaster-recovery snapshots** of the upstream packs and the kit
 release. They exist for the one case a commit SHA cannot cover: upstream
 disappearing. They are never the working source and are never edited.
+
+## Manuals: markdown is the source
+
+`docs/manuals/*.md` is the source of truth for the manuals. The matching
+`*.docx` is a generated render kept for convenience — edit the markdown, not the
+Word file. The markdown was produced from the original docx by
+`scripts/docx_to_md.py` (stdlib only). To regenerate the docx from markdown,
+use pandoc: `pandoc file.md -o file.docx` (pandoc is not bundled).
 
 ## Local tree is intentionally incomplete
 
