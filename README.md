@@ -1,29 +1,30 @@
 # AI SDLC Workspace
 
-這個資料夾是 AI-assisted SDLC 相關材料的整理 workspace，不是單一可執行產品。
+這個資料夾是 AI-assisted SDLC 相關材料的整理 workspace,不是單一可執行產品。
 
-主要內容分成四類：
+> **Source of truth:** 見 [`SOURCE-OF-TRUTH.md`](SOURCE-OF-TRUTH.md)。簡述:本 repo 採「瘦策展 (thin curator)」模型——外部 skill 包不在此維護,而是由 starter kit 的 bootstrap script 依需求拉取、並用 `skills.lock` 釘住 commit。本機 checkout 預設**不含**外部 skill(刻意如此),需要時才 bootstrap。
 
-- `starter-kits/`: 可複製到新 repo 的 starter kit。
-- `skill-packs/`: 可供 agent 使用或參考的技能包。
+主要內容:
+
+- `starter-kits/`: 可複製到新 repo 的 starter kit(本 repo 真正維護的東西)。
 - `docs/manuals/`: Word 手冊與設計說明。
-- `archives/source-zips/`: 原始下載 zip 備份。
+- `archives/source-zips/`: 上游與 kit 的**不可變冷備份快照**(災難復原用,非工作來源)。
 
 ## Directory Map
 
 ```text
 .
+├── SOURCE-OF-TRUTH.md
 ├── starter-kits/
 │   └── ai-sdlc-v6.1-new-project-ready/
-├── skill-packs/
-│   ├── agent-skills/
-│   └── superpowers/
 ├── docs/
 │   └── manuals/
 ├── archives/
 │   └── source-zips/
-└── .ai/
-    └── artifacts/
+├── scripts/
+│   └── check_consistency.sh
+└── .github/workflows/
+    └── consistency.yml
 ```
 
 ## What Each Folder Is For
@@ -32,7 +33,7 @@
 
 主 starter kit。用途是把新的或既有的 repo 套上 skill-driven SDLC 流程。
 
-它包含：
+它包含:
 
 - `CLAUDE.md`: Claude Code 操作契約。
 - `pipeline/`: lifecycle、skill map、artifact schema、approval matrix。
@@ -40,61 +41,51 @@
 - `.ai/`: SDLC governance、risk policy、artifact folders。
 - `scripts/`: pipeline validation 與 external skills bootstrap scripts。
 
-如果要建立新專案，從這個資料夾複製內容到新 repo root，再依照該 starter kit 的 `INSTALL.md` 執行。
+如果要建立新專案,從這個資料夾複製內容到新 repo root,再依照該 starter kit 的 `INSTALL.md` 執行。
 
-### `skill-packs/agent-skills/`
+### 外部 skill 包(不在此 repo 內維護)
 
-工程 lifecycle 技能庫，包含 spec、plan、build、test、review、security、performance、ship 等技能。
+過去這裡有一個 `skill-packs/` 放外部 skill 的可編輯副本,但那是多餘的第三份拷貝(和 bootstrap 目標、zip 快照重複),已移除。要在本機取得外部 skill:
 
-這包適合用來讓 coding agent 遵循比較完整的工程流程，而不是直接寫 code。
+- 執行 `starter-kits/ai-sdlc-v6.1-new-project-ready/scripts/bootstrap_external_skills.sh`(clone 上游到 `skills/external/`,並產出 `skills.lock`),或
+- 解壓 `archives/source-zips/` 內對應的快照。
 
-### `skill-packs/superpowers/`
-
-Agentic development 方法論與技能包，重點包含 brainstorming、writing plans、TDD、worktree isolation、subagent-driven development、code review。
-
-這包適合用來強化 agent 的開發紀律與多代理工作流。
+來源:[addyosmani/agent-skills](https://github.com/addyosmani/agent-skills)(工程 lifecycle 技能)、[obra/superpowers](https://github.com/obra/superpowers)(方法論/紀律)、[heilcheng/awesome-agent-skills](https://github.com/heilcheng/awesome-agent-skills)(discovery index)。
 
 ### `docs/manuals/`
 
-放 Word 格式的使用手冊與 v6.1 pipeline 設計說明。
-
-目前包含：
+放 Word 格式的使用手冊與 v6.1 pipeline 設計說明:
 
 - `AI_SDLC_Claude_Code_New_Project_Ready_Pipeline_v6_1.docx`
 - `Claude_Code_AI_SDLC_StarterKit_v6_1_使用手冊.docx`
 
 ### `archives/source-zips/`
 
-放原始 zip 備份。這些檔案保留作為來源快照，不直接拿來編輯。
+上游 skill 包與 kit 的不可變快照,作為**離線災難復原**備份(上游消失時的後備,commit SHA 無法涵蓋此情況)。不直接編輯,也不是工作來源。詳見 [`SOURCE-OF-TRUTH.md`](SOURCE-OF-TRUTH.md) 與 `archives/source-zips/README.md`。
 
-目前包含：
+## Source of Truth 與一致性
 
-- `ai-sdlc-v6_1-new-project-ready-starter-kit.zip`
-- `agent-skills-main.zip`
-- `superpowers-main.zip`
-- `awesome-agent-skills-main.zip`
-
-`awesome-agent-skills-main.zip` 目前只保留為 archive，尚未解壓成工作資料夾。
+- 完整規則見 [`SOURCE-OF-TRUTH.md`](SOURCE-OF-TRUTH.md)。
+- `scripts/check_consistency.sh` 驗證不變量(無 `skill-packs/`、bootstrap 產出單一 `skills.lock`、kit 結構通過 validate),並由 `.github/workflows/consistency.yml` 在 CI 強制執行。
 
 ## Local-Only Files
 
-`.claude/settings.local.json` 是本機 Claude/Codex 工具設定，不是這個 workspace 的正式內容，已透過 `.gitignore` 忽略。
-
-`.DS_Store` 也是本機 macOS 檔案，已透過 `.gitignore` 忽略。
+`.claude/settings.local.json` 是本機 Claude/Codex 工具設定,已透過 `.gitignore` 忽略。`.DS_Store` 也已忽略。
 
 ## Validation
 
-整理後可用這個指令驗證主 starter kit 的 pipeline 結構：
-
 ```bash
+# workspace 一致性 (source of truth 不變量)
+bash scripts/check_consistency.sh
+
+# 主 starter kit 的 pipeline 結構
 python3 starter-kits/ai-sdlc-v6.1-new-project-ready/scripts/validate_pipeline.py
 ```
 
-若要真的在 starter kit 內下載 external skills，進入 starter kit 後執行：
+若要在 starter kit 內下載 external skills(本機預設未執行):
 
 ```bash
 cd starter-kits/ai-sdlc-v6.1-new-project-ready
 bash scripts/bootstrap_external_skills.sh
+python3 scripts/audit_skills.py
 ```
-
-目前整理作業沒有執行 external skills bootstrap，也沒有修改任何 skill pack 內部內容。

@@ -1,0 +1,16 @@
+name: Workspace Consistency
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  consistency:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install pyyaml
+      - name: Check source-of-truth invariants
+        run: bash scripts/check_consistency.sh

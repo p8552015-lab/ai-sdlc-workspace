@@ -51,6 +51,20 @@ for path, strict_sections in sorted(set(mapped_skill_paths(data))):
     errors += check_skill(path, strict_sections)
 
 if errors:
+    ext = ROOT / 'skills' / 'external'
+    def _placeholder_only(d):
+        if not d.exists():
+            return True
+        return all(p.name == '.gitkeep' for p in d.iterdir())
+    all_external = all('skills/external' in e for e in errors)
+    externals_unbootstrapped = ext.exists() and all(
+        _placeholder_only(c) for c in ext.iterdir() if c.is_dir()
+    )
+    if all_external and externals_unbootstrapped:
+        print('External skills are not bootstrapped - local tree is intentionally incomplete.')
+        print('Run: bash scripts/bootstrap_external_skills.sh  (then re-run this audit).')
+        print('CI bootstraps automatically before this audit, so this is expected locally.')
+        sys.exit(1)
     print('\n'.join(errors))
     sys.exit(1)
 print('Skill audit passed')
